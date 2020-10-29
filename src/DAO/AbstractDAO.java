@@ -4,13 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public abstract class AbstractDAO {
+public class AbstractDAO {
 
-    private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/ProyectoDI";
-    private static final String USUARIO = "root";
-    private static final String CLAVE = "123456";
-    static Connection conexion;
+    protected static final String CONTROLADOR = "com.mysql.jdbc.Driver";
+    protected static final String URL = "jdbc:mysql://localhost:3306/proyectodi";
+    protected static final String USUARIO = "root";
+    protected static final String CLAVE = "123456";
+    protected static Connection conexion;
 
     /**
      * Conectar al bbdd.
