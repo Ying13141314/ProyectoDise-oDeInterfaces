@@ -20,14 +20,25 @@ public class UsuarioDAO extends AbstractDAO {
         super.cerrarBasesDatos();
     }
 
+    /**
+     * Método para loguearse.
+     * @param pass
+     * @param user
+     * @return
+     * @throws SQLException
+     */
+    public AbstractUsuario loguearse(String pass,String user) throws SQLException {
 
-    public AbstractUsuario comprobarContrasenaUsuario(String pass,String user) throws SQLException {
         String sql = "SELECT * from Usuario where contrasena = ? and nombreUsuario=?";
 
         PreparedStatement ps = conexion.prepareStatement(sql);
         ps.setString(1,pass);
         ps.setString(2,user);
         ResultSet rs = ps.executeQuery();
+
+        if (!rs.isBeforeFirst()){
+            return null;
+        }
 
         return AbstractUsuario.tipo(rs);
 

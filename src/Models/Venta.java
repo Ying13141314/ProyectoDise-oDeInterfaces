@@ -3,13 +3,16 @@ package Models;
 import DAO.AbstractDAO;
 import Utils.tipoUsuario;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Venta extends AbstractUsuario{
 
     private int idVenta;
 
-    public Venta(String nombre, String apellido, String nombreUsuario, String contrasena, String telefono, String correo, String dni, Double salario, tipoUsuario tipo,int idVenta){
-        super(nombre, apellido,nombreUsuario,contrasena,telefono,correo, dni,salario,tipo);
-        tipo = tipo.venta;
+    public Venta(ResultSet rs) throws SQLException {
+        super(rs);
+
     }
 
 
