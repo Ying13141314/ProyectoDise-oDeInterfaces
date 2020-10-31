@@ -1,55 +1,97 @@
 package Controllers;
 
+import DAO.UsuarioDAO;
+import Indice.Main;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
+
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
+
+
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.SQLException;
 
 public class ControladorLogin {
 
 
+    public ImageView ivClose;
+    public ImageView ivMinimize;
+    public Pane panelDrag;
     @FXML
-    private Pane panelMinimize,panelClose,panel;
-    private Node buttonAcceder,buttonInstagram,buttonTwitter,buttonFacebook;
-    private Stage primaryStage;
-    private Scene scene;
+    private Parent panel;
+    @FXML
+    private Pane panelClose;
+    @FXML
+    private TextField tfPassw;
+    @FXML
+    private TextField tfUser;
+    @FXML
+    private Button buttonTwitter;
+    @FXML
+    private Button buttonInstagram;
+    @FXML
+    private Button buttonFacebook;
+    @FXML
+    private Label lbErrorPasswUser;
+    @FXML
+    private Pane panelMinimize;
 
-    public ControladorLogin(Stage primaryStage){
-       this.primaryStage = primaryStage;
-        scene = primaryStage.getScene();
-        panel = (Pane) scene.lookup("#panelDrag");
-        panelMinimize = (Pane) scene.lookup("#panelMinimize");
-        panelClose = (Pane) scene.lookup("#panelClose");
-        buttonAcceder = scene.lookup("#buttonAcceder");
-        buttonFacebook = scene.lookup("#buttonFacebook");
-        buttonInstagram = scene.lookup("#buttonInstagram");
-        buttonTwitter = scene.lookup("#buttonTwitter");
+    private Main miApp;
+
+
+
+
+    UsuarioDAO miUsuario = new UsuarioDAO();
+
+
+    public ControladorLogin(){
+    }
+
+    public void setMiApp(Main miApp) {
+        this.miApp = miApp;
     }
 
     @FXML
-    public void arrastrarMenu(){
+    private void initialize(){
+        arrastrarMenu();
+        minimizePanel();
+        closePanel();
+    }
+
+    @FXML
+    public void comprobarAcceder(ActionEvent evento) throws SQLException {
+        if (tfUser.getText().equals("") || tfPassw.getText().equals("")){
+            lbErrorPasswUser.setText("Contraseña o usuario no puede ser vacio");
+        }else {
+            miUsuario.loguearse(tfPassw.getText(),tfUser.getText());
+            lbErrorPasswUser.setText("Logueado correctamente");
+        }
+    }
+    
+    @FXML
+    private void arrastrarMenu(){
         panel.setOnMousePressed(pressEvent -> {
             panel.setOnMouseDragged(dragEvent -> {
-                primaryStage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
-                primaryStage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+                miApp.getPrimaryStage().setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                miApp.getPrimaryStage().setY(dragEvent.getScreenY() - pressEvent.getSceneY());
             });
         });
     }
 
     @FXML
-    public void minimizePanel() {
+    private void minimizePanel() {
         panelMinimize.setOnMouseEntered(entered -> {
             panelMinimize.setBackground(new Background(new BackgroundFill(Color.web("#dcdcdc"), CornerRadii.EMPTY, Insets.EMPTY)));
         });
@@ -57,12 +99,12 @@ public class ControladorLogin {
             panelMinimize.setBackground(new Background(new BackgroundFill(Color.web("#f0f1f2"), CornerRadii.EMPTY, Insets.EMPTY)));
         });
         panelMinimize.setOnMouseClicked(minimize -> {
-            primaryStage.setIconified(true);
+            miApp.getPrimaryStage().setIconified(true);
         });
     }
 
     @FXML
-    public void closePanel() {
+    private void closePanel() {
         panelClose.setOnMouseEntered(entered -> {
             panelClose.setBackground(new Background(new BackgroundFill(Color.web("#dcdcdc"), CornerRadii.EMPTY, Insets.EMPTY)));
         });
@@ -75,31 +117,25 @@ public class ControladorLogin {
     }
 
     @FXML
-    public void socialNetworks(){
+    private void socialNetworks(){
         buttonFacebook.setOnMouseClicked(close -> {
             try {
                 Desktop.getDesktop().browse(new URI("https://www.facebook.com/3dsandcias/"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (URISyntaxException e) {
+            } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
             }
         });
         buttonInstagram.setOnMouseClicked(close -> {
             try {
                 Desktop.getDesktop().browse(new URI("https://www.facebook.com/3dsandcias/"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (URISyntaxException e) {
+            } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
             }
         });
         buttonTwitter.setOnMouseClicked(close -> {
             try {
                 Desktop.getDesktop().browse(new URI("https://www.facebook.com/3dsandcias/"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (URISyntaxException e) {
+            } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
             }
         });

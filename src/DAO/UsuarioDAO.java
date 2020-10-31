@@ -20,6 +20,7 @@ public class UsuarioDAO extends AbstractDAO {
         super.cerrarBasesDatos();
     }
 
+
     /**
      * Método para loguearse.
      * @param pass
