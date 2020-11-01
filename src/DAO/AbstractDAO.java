@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class AbstractDAO {
 
     protected static final String CONTROLADOR = "com.mysql.jdbc.Driver";
-    protected static final String URL = "jdbc:mysql://localhost:3306/proyectodi";
+    protected static final String URL = "jdbc:mysql://localhost:3306/yicarbbdd";
     protected static final String USUARIO = "root";
     protected static final String CLAVE = "123456";
     protected static Connection conexion;

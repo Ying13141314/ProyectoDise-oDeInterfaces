@@ -2,6 +2,7 @@ package Controllers;
 
 import DAO.UsuarioDAO;
 import Indice.Main;
+import Models.AbstractUsuario;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -72,11 +73,18 @@ public class ControladorLogin {
 
     @FXML
     public void comprobarAcceder(ActionEvent evento) throws SQLException {
+
         if (tfUser.getText().equals("") || tfPassw.getText().equals("")){
             lbErrorPasswUser.setText("Contraseña o usuario no puede ser vacio");
+            return;
+        }
+        AbstractUsuario usuario = miUsuario.loguearse(tfPassw.getText(),tfUser.getText());
+        if (usuario==null){
+            lbErrorPasswUser.setText("Contraseña o usuario incorrecta");
         }else {
-            miUsuario.loguearse(tfPassw.getText(),tfUser.getText());
             lbErrorPasswUser.setText("Logueado correctamente");
+            miApp.setMiUsuario(usuario);
+
         }
     }
     
@@ -140,6 +148,4 @@ public class ControladorLogin {
             }
         });
     }
-
-
 }

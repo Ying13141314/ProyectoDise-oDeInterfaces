@@ -12,23 +12,23 @@ public abstract class AbstractUsuario {
     //Estado
     protected String id,nombre,apellido,nombreUsuario,contrasena,telefono,correo,dni,tipo;
     protected Double salario;
-    protected static final String VENTA = "ventas";
+    protected static final String VENTA = "venta";
     protected static final String JEFE = "jefe";
     protected static final String MECANICO = "mecanico";
 
 
     //Constructor
     public AbstractUsuario(ResultSet rs) throws SQLException {
-        id = rs.getNString("idUsuario");
-        nombre= rs.getNString("nombre");
-        apellido = rs.getNString("apellido");
-        nombreUsuario=rs.getNString("nombreUsuario");
-        contrasena=rs.getNString("contrasena");
-        telefono=rs.getNString("telefono");
-        correo = rs.getNString("correo");
-        dni = rs.getNString("dni");
+        id = rs.getString("idUsuario");
+        nombre= rs.getString("nombre");
+        apellido = rs.getString("apellido");
+        nombreUsuario=rs.getString("nombreUsuario");
+        contrasena=rs.getString("contrasena");
+        telefono=rs.getString("telefono");
+        correo = rs.getString("correo");
+        dni = rs.getString("dni");
         salario=rs.getDouble("salario");
-        tipo = rs.getNString("tipo");
+        tipo = rs.getString("tipo");
         
     }
     public static AbstractUsuario tipo(ResultSet rs) throws SQLException {
@@ -36,7 +36,6 @@ public abstract class AbstractUsuario {
             return new Venta(rs);
         }else if(rs.getString("tipo").equals(JEFE)){
             return new Jefe(rs);
-
         }else if (rs.getString("tipo").equals(MECANICO)){
             return new Mecanico(rs);
         }

@@ -1,9 +1,10 @@
 package Indice;
 
 import Controllers.ControladorLogin;
+import DAO.UsuarioDAO;
+import Models.AbstractUsuario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -14,6 +15,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     private Stage primaryStage;
+    private AbstractUsuario miUsuario;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -35,6 +37,8 @@ public class Main extends Application {
             //Para dar parametro al constructor.
             co.setMiApp(this);
 
+
+
             //Para mostrar la ventana por eso se pone al final.
             primaryStage.show();
 
@@ -45,6 +49,10 @@ public class Main extends Application {
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public void setMiUsuario(AbstractUsuario miUsuario) {
+        this.miUsuario = miUsuario;
     }
 
     public static void main(String[] args) {

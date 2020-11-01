@@ -10,16 +10,6 @@ import java.sql.SQLException;
 
 public class UsuarioDAO extends AbstractDAO {
 
-    @Override
-    public Connection conectar() {
-        return super.conectar();
-    }
-
-    @Override
-    public void cerrarBasesDatos() {
-        super.cerrarBasesDatos();
-    }
-
 
     /**
      * Método para loguearse.
@@ -30,18 +20,24 @@ public class UsuarioDAO extends AbstractDAO {
      */
     public AbstractUsuario loguearse(String pass,String user) throws SQLException {
 
-        String sql = "SELECT * from Usuario where contrasena = ? and nombreUsuario=?";
+        super.conectar();
+
+        AbstractUsuario miUsuario = null;
+        String sql = "SELECT * from usuario where contrasena = ? and nombreUsuario=?";
 
         PreparedStatement ps = conexion.prepareStatement(sql);
         ps.setString(1,pass);
         ps.setString(2,user);
         ResultSet rs = ps.executeQuery();
 
-        if (!rs.isBeforeFirst()){
-            return null;
+
+        if (rs.isBeforeFirst()){
+            rs.next();
+            miUsuario = AbstractUsuario.tipo(rs);
         }
 
-        return AbstractUsuario.tipo(rs);
-
+        super.cerrarBasesDatos();
+        return miUsuario;
     }
+
 }

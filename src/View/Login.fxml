@@ -69,7 +69,7 @@
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Button>
-                <Button fx:id="buttonFacebook" layoutX="930.0" layoutY="625.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #3b5998;" text="FACEBOOK" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="buttonFacebook" onAction="#socialNetworks" layoutX="930.0" layoutY="625.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #3b5998;" text="FACEBOOK" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
