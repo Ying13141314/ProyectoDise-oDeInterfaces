@@ -5,6 +5,7 @@ import DAO.UsuarioDAO;
 import Models.AbstractUsuario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -31,7 +32,7 @@ public class Main extends Application {
             FXMLLoader logueader = new FXMLLoader(getClass().getResource("/View/Login.fxml"));
             primaryStage.setTitle("Yicar");
             primaryStage.setScene(new Scene(logueader.load(), 1280, 720));
-
+            primaryStage.getScene().getStylesheets().add(getClass().getResource("/View/Resources/styleMain.css").toExternalForm());
             //Cargar el controlador
             ControladorLogin co = logueader.getController();
             //Para dar parametro al constructor.
@@ -45,6 +46,12 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void cambiarScene() throws IOException {
+        Parent pane = FXMLLoader.load(getClass().getResource("/View/Venta.fxml"));
+        Scene scene = new Scene(pane);
+        primaryStage.setScene(scene);
     }
 
     public Stage getPrimaryStage() {
