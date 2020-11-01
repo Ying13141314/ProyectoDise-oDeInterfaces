@@ -29,8 +29,9 @@ public abstract class AbstractUsuario {
         dni = rs.getNString("dni");
         salario=rs.getDouble("salario");
         tipo = rs.getNString("tipo");
-        
+
     }
+
     public static AbstractUsuario tipo(ResultSet rs) throws SQLException {
         if (rs.getString("tipo").equals(VENTA)){
             return new Venta(rs);

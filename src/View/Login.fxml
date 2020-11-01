@@ -23,8 +23,8 @@
                 <Image url="@Resources/hyundai.jpg" />
             </image>
         </ImageView>
-        <Pane fx:id="panelDrag" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="1190.0" />
-        <Pane fx:id="panelMinimize" layoutX="1190.0" prefHeight="45.0" prefWidth="45.0">
+        <Pane fx:id="panelDrag" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#dragPanel" prefHeight="45.0" prefWidth="1190.0" />
+        <Pane fx:id="panelMinimize" layoutX="1190.0" onMouseClicked="#minimizePanel" onMouseEntered="#shadowPane" onMouseExited="#normalPane" prefHeight="45.0" prefWidth="45.0">
             <children>
                 <ImageView fx:id="ivMinimize" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="15.0" layoutY="15.0">
                     <image>
@@ -33,7 +33,7 @@
                 </ImageView>
             </children>
         </Pane>
-        <Pane fx:id="panelClose" layoutX="1235.0" prefHeight="45.0" prefWidth="45.0">
+        <Pane fx:id="panelClose" layoutX="1235.0" onMouseClicked="#closePanel" onMouseEntered="#shadowPane" onMouseExited="#normalPane" prefHeight="45.0" prefWidth="45.0">
             <children>
                 <ImageView fx:id="ivClose" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="15.0" layoutY="15.0">
                     <image>
@@ -59,17 +59,17 @@
                         <Font name="System Bold" size="40.0" />
                     </font>
                 </Text>
-                <Button fx:id="buttonTwitter" layoutX="1156.0" layoutY="625.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #00acee;" text="TWITTER" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="buttonTwitter" layoutX="1156.0" layoutY="625.0" mnemonicParsing="false" onAction="#socialNetworks" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #00acee;" text="TWITTER" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Button>
-                <Button fx:id="buttonInstagram" layoutX="1039.0" layoutY="625.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #e61610;" text="GOOGLE" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="buttonInstagram" layoutX="1039.0" layoutY="625.0" mnemonicParsing="false" onAction="#socialNetworks" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #e61610;" text="GOOGLE" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Button>
-                <Button fx:id="buttonFacebook" layoutX="930.0" layoutY="625.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #3b5998;" text="FACEBOOK" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="buttonFacebook" layoutX="930.0" layoutY="625.0" mnemonicParsing="false" onAction="#socialNetworks" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #3b5998;" text="FACEBOOK" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
@@ -79,7 +79,7 @@
                         <Image url="@Resources/logo1.png" />
                     </image>
                 </ImageView>
-                <Button fx:id="buttonAcceder" onAction="#comprobarAcceder" layoutX="930.0" layoutY="527.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="316.0" style="-fx-background-color: #e76f51;" text="ACCEDER" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="buttonAcceder" layoutX="930.0" layoutY="527.0" mnemonicParsing="false" onAction="#comprobarAcceder" prefHeight="39.0" prefWidth="316.0" style="-fx-background-color: #e76f51;" text="ACCEDER" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>

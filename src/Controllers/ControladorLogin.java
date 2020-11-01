@@ -5,16 +5,20 @@ import Indice.Main;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 
+import javafx.scene.LightBase;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-
+import javafx.stage.Stage;
 
 
 import java.awt.*;
@@ -49,97 +53,99 @@ public class ControladorLogin {
     private Pane panelMinimize;
 
     private Main miApp;
-
-
+    private Stage primaryStage;
 
 
     UsuarioDAO miUsuario = new UsuarioDAO();
 
 
-    public ControladorLogin(){
+    public ControladorLogin() {
     }
 
-    public void setMiApp(Main miApp) {
+    public void setMiApp(Main miApp, Stage primaryStage) {
         this.miApp = miApp;
+        this.primaryStage = primaryStage;
     }
 
     @FXML
-    private void initialize(){
-        arrastrarMenu();
-        minimizePanel();
-        closePanel();
-    }
+    public void comprobarAcceder(ActionEvent e) throws SQLException, IOException {
+        if (tfUser.getText().equals("") || tfPassw.getText().equals("")) {
+            lbErrorPasswUser.setText("Los campos no pueden estar vacios.");
+            cambiarScene();
 
-    @FXML
-    public void comprobarAcceder(ActionEvent evento) throws SQLException {
-        if (tfUser.getText().equals("") || tfPassw.getText().equals("")){
-            lbErrorPasswUser.setText("Contraseña o usuario no puede ser vacio");
-        }else {
-            miUsuario.loguearse(tfPassw.getText(),tfUser.getText());
+        } else {
+            miUsuario.loguearse(tfPassw.getText(), tfUser.getText());
             lbErrorPasswUser.setText("Logueado correctamente");
         }
     }
-    
+
+    private void cambiarScene() throws IOException {
+        Parent pane = FXMLLoader.load(getClass().getResource("/View/Mecanico.fxml"));
+        Scene scene = new Scene(pane);
+        primaryStage.setScene(scene);
+    }
+
     @FXML
-    private void arrastrarMenu(){
-        panel.setOnMousePressed(pressEvent -> {
-            panel.setOnMouseDragged(dragEvent -> {
-                miApp.getPrimaryStage().setX(dragEvent.getScreenX() - pressEvent.getSceneX());
-                miApp.getPrimaryStage().setY(dragEvent.getScreenY() - pressEvent.getSceneY());
-            });
+    private void dragPanel(MouseEvent e) {
+        panel.setOnMouseDragged(dragEvent -> {
+            miApp.getPrimaryStage().setX(dragEvent.getScreenX() - e.getSceneX());
+            miApp.getPrimaryStage().setY(dragEvent.getScreenY() - e.getSceneY());
         });
     }
 
     @FXML
-    private void minimizePanel() {
-        panelMinimize.setOnMouseEntered(entered -> {
-            panelMinimize.setBackground(new Background(new BackgroundFill(Color.web("#dcdcdc"), CornerRadii.EMPTY, Insets.EMPTY)));
-        });
-        panelMinimize.setOnMouseExited(exited -> {
-            panelMinimize.setBackground(new Background(new BackgroundFill(Color.web("#f0f1f2"), CornerRadii.EMPTY, Insets.EMPTY)));
-        });
-        panelMinimize.setOnMouseClicked(minimize -> {
+    private void minimizePanel(MouseEvent e) {
+        if (e.getSource() instanceof Pane) {
             miApp.getPrimaryStage().setIconified(true);
-        });
+        }
     }
 
     @FXML
-    private void closePanel() {
-        panelClose.setOnMouseEntered(entered -> {
-            panelClose.setBackground(new Background(new BackgroundFill(Color.web("#dcdcdc"), CornerRadii.EMPTY, Insets.EMPTY)));
-        });
-        panelClose.setOnMouseExited(exited -> {
-            panelClose.setBackground(new Background(new BackgroundFill(Color.web("#f0f1f2"), CornerRadii.EMPTY, Insets.EMPTY)));
-        });
-        panelClose.setOnMouseClicked(close -> {
+    private void shadowPane(MouseEvent e) {
+        if (e.getSource() instanceof Pane) {
+            Pane panel = (Pane) e.getSource();
+            panel.setBackground(new Background(new BackgroundFill(Color.web("#dcdcdc"), CornerRadii.EMPTY, Insets.EMPTY)));
+        }
+    }
+
+    @FXML
+    private void normalPane(MouseEvent e) {
+        if (e.getSource() instanceof Pane) {
+            Pane panel = (Pane) e.getSource();
+            panel.setBackground(new Background(new BackgroundFill(Color.web("#f0f1f2"), CornerRadii.EMPTY, Insets.EMPTY)));
+        }
+    }
+
+    @FXML
+    private void closePanel(MouseEvent e) {
+        if (e.getSource() instanceof Pane) {
             Platform.exit();
-        });
+        }
     }
 
     @FXML
-    private void socialNetworks(){
-        buttonFacebook.setOnMouseClicked(close -> {
-            try {
-                Desktop.getDesktop().browse(new URI("https://www.facebook.com/3dsandcias/"));
-            } catch (IOException | URISyntaxException e) {
-                e.printStackTrace();
+    private void socialNetworks(ActionEvent e) {
+        if (e.getSource() instanceof Button) {
+            Button b = (Button) e.getSource();
+            if (b.getText().equals("FACEBOOK")) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://www.facebook.com/3dsandcias/"));
+                } catch (IOException | URISyntaxException a) {
+                    a.printStackTrace();
+                }
+            } else if (b.getText().equals("FACEBOOK")) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://www.facebook.com/3dsandcias/"));
+                } catch (IOException | URISyntaxException a) {
+                    a.printStackTrace();
+                }
+            } else if (b.getText().equals("FACEBOOK")) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://www.facebook.com/3dsandcias/"));
+                } catch (IOException | URISyntaxException a) {
+                    a.printStackTrace();
+                }
             }
-        });
-        buttonInstagram.setOnMouseClicked(close -> {
-            try {
-                Desktop.getDesktop().browse(new URI("https://www.facebook.com/3dsandcias/"));
-            } catch (IOException | URISyntaxException e) {
-                e.printStackTrace();
-            }
-        });
-        buttonTwitter.setOnMouseClicked(close -> {
-            try {
-                Desktop.getDesktop().browse(new URI("https://www.facebook.com/3dsandcias/"));
-            } catch (IOException | URISyntaxException e) {
-                e.printStackTrace();
-            }
-        });
+        }
     }
-
-
 }

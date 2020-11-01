@@ -32,10 +32,12 @@ public class Main extends Application {
 
             //Cargar el controlador
             ControladorLogin co = logueader.getController();
+
             //Para dar parametro al constructor.
-            co.setMiApp(this);
+            co.setMiApp(this, primaryStage);
 
             //Para mostrar la ventana por eso se pone al final.
+
             primaryStage.show();
 
         } catch (IOException e) {
