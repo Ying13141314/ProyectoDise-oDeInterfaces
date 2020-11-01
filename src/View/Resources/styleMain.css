@@ -1,0 +1,5 @@
+.tferror {
+    -fx-text-box-border: red ;
+    -fx-focus-color: red ;
+    -fx-border-width: 4px;
+}
