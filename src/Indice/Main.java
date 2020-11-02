@@ -19,7 +19,7 @@ public class Main extends Application {
     private AbstractUsuario miUsuario;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) {
         this.primaryStage=primaryStage;
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setResizable(false);
@@ -46,22 +46,6 @@ public class Main extends Application {
         }
     }
 
-    public void cambiarScene() throws IOException {
-        //comprobar el tipo de usuario , segun cual es carga uno u otra.
-        String ruta="";
-        if(miUsuario.getTipo().equals(AbstractUsuario.VENTA)){
-            ruta="/View/Venta.fxml";
-        }else if (miUsuario.getTipo().equals(AbstractUsuario.MECANICO)){
-            ruta="/View/Mecanico.fxml";
-        }else{
-            ruta="/View/Jefe.fxml";
-        }
-        Parent pane = FXMLLoader.load(getClass().getResource(ruta));
-        Scene scene = new Scene(pane);
-        primaryStage.setScene(scene);
-
-    }
-
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -69,6 +53,8 @@ public class Main extends Application {
     public void setMiUsuario(AbstractUsuario miUsuario) {
         this.miUsuario = miUsuario;
     }
+
+    public AbstractUsuario getMiUsuario() { return miUsuario; }
 
     public static void main(String[] args) {
         launch(args);

@@ -79,22 +79,22 @@
                         <Image url="@Resources/fondo_aplicacion.jpg" />
                     </image>
                 </ImageView>
-            <Button layoutX="75.0" layoutY="226.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="400.0" style="-fx-background-color: #7A7A7A;" text="VER VEHICULOS CONCESIONARIO" textFill="WHITE">
+            <Button fx:id="buttonVehiculoConcesionario" layoutX="75.0" layoutY="226.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="400.0" style="-fx-background-color: #7A7A7A;" text="VER VEHICULO CONCESIONARIO" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="75.0" layoutY="398.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="400.0" style="-fx-background-color: #7A7A7A;" text="BUSCAR FICHAS DE CLIENTE" textFill="WHITE">
+            <Button fx:id="buttonFichaCliente" layoutX="75.0" layoutY="398.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="400.0" style="-fx-background-color: #7A7A7A;" text="BUSCAR FICHA DE CLIENTE" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="805.0" layoutY="226.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="400.0" style="-fx-background-color: #7A7A7A;" text="REGISTRAR CLIENTES INTERESADOS" textFill="WHITE">
+            <Button fx:id="buttonRegistrarCliente" layoutX="805.0" layoutY="226.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="400.0" style="-fx-background-color: #7A7A7A;" text="REGISTRAR CLIENTE INTERESADO" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="805.0" layoutY="398.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="400.0" style="-fx-background-color: #7A7A7A;" text="PROPUESTAS DE VENTA" textFill="WHITE">
+            <Button fx:id="buttonPropuestaVenta" layoutX="805.0" layoutY="398.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="400.0" style="-fx-background-color: #7A7A7A;" text="PROPUESTA DE VENTA" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="16.0" />
                </font>

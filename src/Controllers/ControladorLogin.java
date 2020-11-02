@@ -69,10 +69,26 @@ public class ControladorLogin {
                 miApp.setMiUsuario(au);
                 removeRed(tfUser);
                 removeRed(tfPassw);
-                miApp.cambiarScene();
+                cambiarScene();
             }
 
         }
+    }
+
+    public void cambiarScene() throws IOException {
+        //comprobar el tipo de usuario , segun cual es carga uno u otra.
+        String ruta="";
+        if(miApp.getMiUsuario().getTipo().equals(AbstractUsuario.VENTA)){
+            ruta="/View/Venta.fxml";
+        }else if (miApp.getMiUsuario().getTipo().equals(AbstractUsuario.MECANICO)){
+            ruta="/View/Mecanico.fxml";
+        }else{
+            ruta="/View/Jefe.fxml";
+        }
+        Parent pane = FXMLLoader.load(getClass().getResource(ruta));
+        Scene scene = new Scene(pane);
+        miApp.getPrimaryStage().setScene(scene);
+
     }
 
     private void setRed(TextField tf) {
