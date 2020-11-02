@@ -2,6 +2,7 @@ package Controllers;
 
 import DAO.UsuarioDAO;
 import Indice.Main;
+import Models.AbstractUsuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -18,11 +19,16 @@ public class ControladorVenta {
 
     private Main miApp;
 
-    UsuarioDAO miUsuario = new UsuarioDAO();
+    AbstractUsuario miUsuario;
 
 
     public ControladorVenta() {
-        System.out.println("holaaaaaaaaaa");
+        this.miUsuario = miApp.getMiUsuario();
+        System.out.println(miUsuario.toString());
+    }
+
+    public void changeScene(){
+
     }
 
     public void setMiApp(Main miApp) {
