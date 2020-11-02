@@ -71,11 +71,8 @@ public class ControladorLogin {
                 removeRed(tfPassw);
                 miApp.cambiarScene();
             }
-
         }
     }
-
-
 
     private void setRed(TextField tf) {
         ObservableList<String> styleClass = tf.getStyleClass();
@@ -85,12 +82,10 @@ public class ControladorLogin {
         }
     }
 
-
     private void removeRed(TextField tf) {
         ObservableList<String> styleClass = tf.getStyleClass();
         styleClass.removeAll(Collections.singleton("tferror"));
     }
-
 
     @FXML
     private void dragPanel(MouseEvent mouseEvent) {

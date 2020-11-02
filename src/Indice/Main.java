@@ -1,9 +1,13 @@
 package Indice;
 
+import Controllers.ControladorJefe;
 import Controllers.ControladorLogin;
+import Controllers.ControladorMecanico;
+import Controllers.ControladorVenta;
 import DAO.UsuarioDAO;
 import Models.AbstractUsuario;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -49,6 +53,7 @@ public class Main extends Application {
     public void cambiarScene() throws IOException {
         //comprobar el tipo de usuario , segun cual es carga uno u otra.
         String ruta="";
+
         if(miUsuario.getTipo().equals(AbstractUsuario.VENTA)){
             ruta="/View/Venta.fxml";
         }else if (miUsuario.getTipo().equals(AbstractUsuario.MECANICO)){
@@ -56,10 +61,20 @@ public class Main extends Application {
         }else{
             ruta="/View/Jefe.fxml";
         }
-        Parent pane = FXMLLoader.load(getClass().getResource(ruta));
-        Scene scene = new Scene(pane);
-        primaryStage.setScene(scene);
 
+        FXMLLoader pane = new FXMLLoader(getClass().getResource(ruta));
+        primaryStage.setScene(new Scene(pane.load(), 1280, 720));
+
+        if(ruta.equals("/View/Venta.fxml")) {
+            ControladorVenta co = pane.getController();
+            co.setMiApp(this);
+        } else if(ruta.equals("/View/Mecanico.fxml")){
+            ControladorMecanico co = pane.getController();
+            //co.setMiApp(this);
+        } else{
+            ControladorJefe co = pane.getController();
+            //co.setMiApp(this);
+        }
     }
 
     public Stage getPrimaryStage() {
