@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ControladorLogin">
+    <children>
+        <ImageView fitHeight="720.0" fitWidth="1280.0">
+            <image>
+                <Image url="@Resources/fondo_aplicacion.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="729.0" fitWidth="1343.0" layoutX="-8.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-191.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="402.0" AnchorPane.topAnchor="-6.0">
+            <image>
+                <Image url="@Resources/hyundai.jpg" />
+            </image>
+        </ImageView>
+        <Pane fx:id="panelDrag" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#dragPanel" prefHeight="45.0" prefWidth="1190.0" />
+        <Pane fx:id="panelMinimize" layoutX="1190.0" onMouseClicked="#minimizePanel" onMouseEntered="#shadowPane" onMouseExited="#normalPane" prefHeight="45.0" prefWidth="45.0">
+            <children>
+                <ImageView fx:id="ivMinimize" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="15.0" layoutY="15.0">
+                    <image>
+                        <Image url="@Resources/minus.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+        <Pane fx:id="panelClose" layoutX="1235.0" onMouseClicked="#closePanel" onMouseEntered="#shadowPane" onMouseExited="#normalPane" prefHeight="45.0" prefWidth="45.0">
+            <children>
+                <ImageView fx:id="ivClose" accessibleRole="BUTTON" fitHeight="15.0" fitWidth="15.0" layoutX="15.0" layoutY="15.0">
+                    <image>
+                        <Image url="@Resources/close.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+        <Pane fx:id="panel1" layoutY="44.0" prefHeight="676.0" prefWidth="1280.0">
+            <children>
+            <PasswordField fx:id="tfPassw" layoutX="930.0" layoutY="306.0" prefHeight="39.0" prefWidth="316.0" promptText="CONTRASEÑA">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </PasswordField>
+                <TextField fx:id="tfUser" layoutX="930.0" layoutY="231.0" prefHeight="39.0" prefWidth="316.0" promptText="NOMBRE DE USUARIO">
+                    <font>
+                        <Font name="Arial" size="12.0" />
+                    </font>
+                </TextField>
+                <Text fill="#e76f51" layoutX="872.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Iniciar sesión" textAlignment="CENTER" wrappingWidth="408.0">
+                    <font>
+                        <Font name="System Bold" size="40.0" />
+                    </font>
+                </Text>
+                <Button fx:id="buttonTwitter" layoutX="1156.0" layoutY="625.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #00acee;" text="TWITTER" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <Button fx:id="buttonGoogle" layoutX="1039.0" layoutY="625.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #e61610;" text="GOOGLE" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <Button fx:id="buttonFacebook" layoutX="930.0" layoutY="625.0" mnemonicParsing="false" onAction="#socialNetworks" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #3b5998;" text="FACEBOOK" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <ImageView fitHeight="64.0" fitWidth="98.0" layoutX="1031.0" layoutY="25.0">
+                    <image>
+                        <Image url="@Resources/logo1.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="buttonAcceder" layoutX="930.0" layoutY="527.0" mnemonicParsing="false" onAction="#comprobarAcceder" prefHeight="39.0" prefWidth="316.0" style="-fx-background-color: #e76f51;" text="ACCEDER" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <CheckBox layoutX="930.0" layoutY="397.0" mnemonicParsing="false" text="Mantener sesión iniciada" />
+                <Text fill="#eb0000" layoutX="930.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Text>
+            <Label fx:id="lbErrorPasswUser" layoutX="930.0" layoutY="352.0" prefHeight="39.0" prefWidth="316.0" textFill="#cd0000" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
