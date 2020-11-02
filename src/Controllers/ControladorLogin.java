@@ -67,7 +67,7 @@ public class ControladorLogin {
                 setRed(tfPassw);
                 lbErrorPasswUser.setText("Información incorrecta. Tu contraseña y/o información de registro están equivocadas.");
             } else {
-                miUsuario.loguearse(tfPassw.getText(), tfUser.getText());
+                miApp.setMiUsuario(au);
                 removeRed(tfUser);
                 removeRed(tfPassw);
                 miApp.cambiarScene();

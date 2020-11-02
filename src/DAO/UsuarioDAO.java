@@ -32,13 +32,13 @@ public class UsuarioDAO extends AbstractDAO {
 
         if (rs.isBeforeFirst()){
             rs.next();
+
+
             miUsuario = AbstractUsuario.tipo(rs);
         }
 
         super.cerrarBasesDatos();
         return miUsuario;
     }
-
-    
 
 }

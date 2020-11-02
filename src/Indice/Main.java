@@ -49,9 +49,19 @@ public class Main extends Application {
     }
 
     public void cambiarScene() throws IOException {
-        Parent pane = FXMLLoader.load(getClass().getResource("/View/Venta.fxml"));
+        //comprobar el tipo de usuario , segun cual es carga uno u otra.
+        String ruta="";
+        if(miUsuario.getTipo().equals(AbstractUsuario.VENTA)){
+            ruta="/View/Venta.fxml";
+        }else if (miUsuario.getTipo().equals(AbstractUsuario.MECANICO)){
+            ruta="/View/Mecanico.fxml";
+        }else{
+            ruta="/View/Jefe.fxml";
+        }
+        Parent pane = FXMLLoader.load(getClass().getResource(ruta));
         Scene scene = new Scene(pane);
         primaryStage.setScene(scene);
+
     }
 
     public Stage getPrimaryStage() {

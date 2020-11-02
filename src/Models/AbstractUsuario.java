@@ -12,9 +12,9 @@ public abstract class AbstractUsuario {
     //Estado
     protected String id,nombre,apellido,nombreUsuario,contrasena,telefono,correo,dni,tipo;
     protected Double salario;
-    protected static final String VENTA = "venta";
-    protected static final String JEFE = "jefe";
-    protected static final String MECANICO = "mecanico";
+    public static final String VENTA = "venta";
+    public static final String JEFE = "jefe";
+    public static final String MECANICO = "mecanico";
 
 
     //Constructor
@@ -43,7 +43,7 @@ public abstract class AbstractUsuario {
 
     }
 
-
-
-
+    public String getTipo() {
+        return tipo;
+    }
 }
