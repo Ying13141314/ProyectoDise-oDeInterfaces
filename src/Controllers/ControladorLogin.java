@@ -43,7 +43,6 @@ public class ControladorLogin {
 
     private Main miApp;
 
-
     UsuarioDAO miUsuario = new UsuarioDAO();
 
 
@@ -139,9 +138,9 @@ public class ControladorLogin {
                 } catch (IOException | URISyntaxException a) {
                     a.printStackTrace();
                 }
-            } else if (b.getText().equals("INSTAGRAM")) {
+            } else if (b.getText().equals("GOOGLE")) {
                 try {
-                    Desktop.getDesktop().browse(new URI("https://www.instagram.com/?hl=es"));
+                    Desktop.getDesktop().browse(new URI("https://google.com/"));
                 } catch (IOException | URISyntaxException a) {
                     a.printStackTrace();
                 }

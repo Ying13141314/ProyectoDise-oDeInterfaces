@@ -38,8 +38,6 @@ public class Main extends Application {
             //Para dar parametro al constructor.
             co.setMiApp(this);
 
-
-
             //Para mostrar la ventana por eso se pone al final.
             primaryStage.show();
 
