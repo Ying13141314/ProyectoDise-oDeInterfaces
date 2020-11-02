@@ -70,8 +70,7 @@ public class ControladorLogin {
                 miUsuario.loguearse(tfPassw.getText(), tfUser.getText());
                 removeRed(tfUser);
                 removeRed(tfPassw);
-                cambiarScene();
-                lbErrorPasswUser.setText("Logueado correctamente");
+                miApp.cambiarScene();
             }
 
         }
@@ -91,9 +90,6 @@ public class ControladorLogin {
         styleClass.removeAll(Collections.singleton("tferror"));
     }
 
-    private void cambiarScene() throws IOException {
-        miApp.cambiarScene();
-    }
 
     @FXML
     private void dragPanel(MouseEvent mouseEvent) {
