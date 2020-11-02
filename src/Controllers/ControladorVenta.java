@@ -29,18 +29,19 @@ public class ControladorVenta {
     public ControladorVenta() {
     }
 
-    public void setMiApp(Main miApp) {
-        this.miApp = miApp;
-    }
-
     public void changeScene(ActionEvent e) throws IOException {
         String ruta = "";
         if (e.getSource().equals(buttonRegistrarCliente)) {
             ruta = "/View/VentaAltaCliente.fxml";
-            // } else if (e.getSource().equals(buttonCancelar)){
-            //ruta = "/View/Venta.fxml";
-            // }
-            FXMLLoader pane = new FXMLLoader(getClass().getResource(ruta));
         }
+        FXMLLoader pane = new FXMLLoader(getClass().getResource(ruta));
+        miApp.getPrimaryStage().setScene(new Scene(pane.load(), 1280, 720));
+
+        ControladorVentaAltaCliente co = pane.getController();
+        co.setMiApp(miApp);
+    }
+
+    public void setMiApp(Main miApp) {
+        this.miApp = miApp;
     }
 }

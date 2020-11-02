@@ -29,11 +29,19 @@ public class ControladorVentaAltaCliente {
         String ruta = "";
         if(e.getSource().equals(buttonCancelar)) {
             ruta = "/View/Venta.fxml";
+
         } else if (e.getSource().equals(buttonAceptar)){
             ruta = "/View/Venta.fxml";
         }
         FXMLLoader pane = new FXMLLoader(getClass().getResource(ruta));
         miApp.getPrimaryStage().setScene(new Scene(pane.load(), 1280, 720));
+
+        ControladorVenta co = pane.getController();
+        co.setMiApp(miApp);
+    }
+
+    public void setMiApp(Main miApp) {
+        this.miApp = miApp;
     }
 
 }
