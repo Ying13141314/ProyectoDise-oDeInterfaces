@@ -114,7 +114,7 @@ public class ControladorLogin {
     private void normalPane(MouseEvent e) {
         if (e.getSource() instanceof Pane) {
             Pane panel = (Pane) e.getSource();
-            panel.setBackground(new Background(new BackgroundFill(Color.web("#f0f1f2"), CornerRadii.EMPTY, Insets.EMPTY)));
+            panel.setBackground(Background.EMPTY);
         }
     }
 
