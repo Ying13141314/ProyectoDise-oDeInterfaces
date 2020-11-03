@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.Jefe;
 
 public class ControladorJefe {
 }

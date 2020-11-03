@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.Mecanico;
 
 public class ControladorMecanico {
 }

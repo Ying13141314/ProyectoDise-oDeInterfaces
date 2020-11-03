@@ -1,22 +1,20 @@
-package Controllers;
+package Controllers.Indice;
 
 import DAO.UsuarioDAO;
+
 import Indice.Main;
 import Models.AbstractUsuario;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -42,7 +40,6 @@ public class ControladorLogin {
     private Label lbErrorPasswUser;
 
     private Main miApp;
-
 
     UsuarioDAO miUsuario = new UsuarioDAO();
 
@@ -72,7 +69,6 @@ public class ControladorLogin {
                 removeRed(tfPassw);
                 miApp.cambiarScene();
             }
-
         }
     }
 
@@ -84,12 +80,10 @@ public class ControladorLogin {
         }
     }
 
-
     private void removeRed(TextField tf) {
         ObservableList<String> styleClass = tf.getStyleClass();
         styleClass.removeAll(Collections.singleton("tferror"));
     }
-
 
     @FXML
     private void dragPanel(MouseEvent mouseEvent) {
@@ -118,7 +112,7 @@ public class ControladorLogin {
     private void normalPane(MouseEvent e) {
         if (e.getSource() instanceof Pane) {
             Pane panel = (Pane) e.getSource();
-            panel.setBackground(new Background(new BackgroundFill(Color.web("#f0f1f2"), CornerRadii.EMPTY, Insets.EMPTY)));
+            panel.setBackground(Background.EMPTY);
         }
     }
 
@@ -139,9 +133,9 @@ public class ControladorLogin {
                 } catch (IOException | URISyntaxException a) {
                     a.printStackTrace();
                 }
-            } else if (b.getText().equals("INSTAGRAM")) {
+            } else if (b.getText().equals("GOOGLE")) {
                 try {
-                    Desktop.getDesktop().browse(new URI("https://www.instagram.com/?hl=es"));
+                    Desktop.getDesktop().browse(new URI("https://google.com/"));
                 } catch (IOException | URISyntaxException a) {
                     a.printStackTrace();
                 }

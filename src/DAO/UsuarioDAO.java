@@ -9,7 +9,7 @@ public class UsuarioDAO extends AbstractDAO {
 
 
     /**
-     * Método para loguearse.
+     * Método para que devuelve un usuario para poder loguarse.
      * @param pass
      * @param user
      * @return
