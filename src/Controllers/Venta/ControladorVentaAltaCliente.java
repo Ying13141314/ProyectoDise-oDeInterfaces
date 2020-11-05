@@ -1,52 +1,91 @@
 package Controllers.Venta;
 
-import Indice.Main;
+import Controllers.AbstractControlador;
+import DAO.ClientesDAO;
 import Models.AbstractUsuario;
+import Models.Cliente;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class ControladorVentaAltaCliente {
+public class ControladorVentaAltaCliente extends AbstractControlador {
+
 
     @FXML
-    Button buttonCancelar;
+    Pane panel;
     @FXML
-    Button buttonAceptar;
+    TextField tfNombre;
+    @FXML
+    TextField tfApellidos;
+    @FXML
+    TextField tfDNI;
+    @FXML
+    TextField tfDireccion;
+    @FXML
+    TextField tfEmail;
+    @FXML
+    TextField tfTelefono;
+    @FXML
+    TextField tfConfirmarEmail;
+    @FXML
+    TextField tfConfirmarTelefono;
+    @FXML
+    DatePicker dpFechaNacimiento;
     @FXML
     ChoiceBox cbSexo;
     @FXML
     ChoiceBox cbOpciones;
     @FXML
-    Pane panel;
-
-    private Main miApp;
+    Button buttonCancelar;
+    @FXML
+    Button buttonAceptar;
 
     AbstractUsuario miUsuario;
 
     public ControladorVentaAltaCliente() {
     }
 
-    public void changeScene(ActionEvent e) throws IOException {
+    // Para inicial cuando el xml ya esta ejecutando.
+    @FXML
+    public void initialize(){
+        cargarDesplegables();
+    }
+
+    public void changeScene(ActionEvent e) throws IOException, SQLException {
         String ruta = "";
         if(e.getSource().equals(buttonCancelar)) {
             ruta = "/View/Venta.fxml";
 
         } else if (e.getSource().equals(buttonAceptar)){
+            HashMap<String,String> cliente = new HashMap<>();
+            cliente.put("Nombre", tfNombre.getText());
+            cliente.put("Apellidos", tfApellidos.getText());
+            cliente.put("DNI", tfDNI.getText());
+            cliente.put("Fecha", dpFechaNacimiento.getValue().toString());
+            cliente.put("Direccion", tfDireccion.getText());
+            cliente.put("Sexo", cbSexo.getSelectionModel().getSelectedItem().toString());
+            cliente.put("Email", tfEmail.getText());
+            cliente.put("Telefono", tfTelefono.getText());
+            cliente.put("Opciones", cbOpciones.getSelectionModel().getSelectedItem().toString());
+
+            Cliente c = new Cliente(cliente);
+            ClientesDAO cdao = new ClientesDAO();
+            cdao.darAltaCliente(c);
+
             ruta = "/View/Venta.fxml";
         }
         FXMLLoader pane = new FXMLLoader(getClass().getResource(ruta));
@@ -54,30 +93,6 @@ public class ControladorVentaAltaCliente {
 
         ControladorVenta co = pane.getController();
         co.setMiApp(miApp);
-    }
-
-    @FXML
-    private void dragPanel(MouseEvent mouseEvent) {
-        panel.setOnMouseDragged(dragEvent -> {
-            miApp.getPrimaryStage().setX(dragEvent.getScreenX() - mouseEvent.getSceneX());
-            miApp.getPrimaryStage().setY(dragEvent.getScreenY() - mouseEvent.getSceneY());
-        });
-    }
-
-    @FXML
-    private void shadowPane(MouseEvent e) {
-        if (e.getSource() instanceof Pane) {
-            Pane panel = (Pane) e.getSource();
-            panel.setBackground(new Background(new BackgroundFill(Color.web("#ac914f"), CornerRadii.EMPTY, Insets.EMPTY)));
-        }
-    }
-
-    @FXML
-    private void normalPane(MouseEvent e) {
-        if (e.getSource() instanceof Pane) {
-            Pane panel = (Pane) e.getSource();
-            panel.setBackground(new Background(new BackgroundFill(Color.web("#e9c46a"), CornerRadii.EMPTY, Insets.EMPTY)));
-        }
     }
 
     public void cargarDesplegables(){
@@ -88,14 +103,11 @@ public class ControladorVentaAltaCliente {
         cbSexo.setItems(list);
 
         ArrayList<String> aviso = new ArrayList<>();
-        aviso.add("Email");
-        aviso.add("SMS");
+        aviso.add("correo");
+        aviso.add("sms");
         ObservableList<String> list2 = FXCollections.observableArrayList(aviso);
         cbOpciones.setItems(list2);
     }
 
-    public void setMiApp(Main miApp) {
-        this.miApp = miApp;
-    }
 
 }

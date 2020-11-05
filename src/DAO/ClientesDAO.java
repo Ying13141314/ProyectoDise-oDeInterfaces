@@ -2,6 +2,7 @@ package DAO;
 import Models.Cliente;
 import Utils.ParseFecha;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,18 +15,19 @@ public class ClientesDAO extends AbstractDAO {
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?)";
         try {
             if(!comprobarDni(miCliente.getDni())){
-                PreparedStatement pt = conexion.prepareStatement(SSQL);
-                pt.setString(1, miCliente.getNombre());
-                pt.setString(2, miCliente.getApellido());
-                pt.setString(3, miCliente.getDni());
-                pt.setString(4, miCliente.getFechaNac());
-                pt.setString(5,miCliente.getDireccion());
-                pt.setString(6,miCliente.getSexo());
-                pt.setString(7,miCliente.getCorreo());
-                pt.setString(8,miCliente.getTelefono());
-                pt.setString(9,miCliente.getTipoComunicacion());
 
-                pt.executeUpdate();
+                PreparedStatement ps = conexion.prepareStatement(SSQL);
+                ps.setString(1, miCliente.getNombre());
+                ps.setString(2, miCliente.getApellido());
+                ps.setString(3, miCliente.getDni());
+                ps.setDate(4, java.sql.Date.valueOf(miCliente.getFechaNac()));
+                ps.setString(5,miCliente.getDireccion());
+                ps.setString(6,miCliente.getSexo());
+                ps.setString(7,miCliente.getCorreo());
+                ps.setString(8,miCliente.getTelefono());
+                ps.setString(9,miCliente.getTipoComunicacion());
+
+                ps.executeUpdate();
                 System.out.println("Terminado");
             }
 

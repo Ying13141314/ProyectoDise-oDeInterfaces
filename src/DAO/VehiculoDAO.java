@@ -1,6 +1,7 @@
 package DAO;
 
 import Models.AbstractUsuario;
+import Models.Vehiculo;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,16 +9,7 @@ import java.sql.SQLException;
 
 public class VehiculoDAO extends AbstractDAO {
 
-    /**
-     * Método para insertar un vehiculo en la Base de Datos.
-     * @param marca
-     * @param modelo
-     * @param numeroPuertas
-     * @param vendido
-     * @param fechaEntrada
-     * @throws SQLException
-     */
-    public void crearVehiculo(String marca, String modelo, int numeroPuertas, boolean vendido, String fechaEntrada) throws SQLException {
+    public void crearVehiculo(Vehiculo vehiculo) throws SQLException {
 
         super.conectar();
 
@@ -25,11 +17,11 @@ public class VehiculoDAO extends AbstractDAO {
         String query = "INSERT INTO vehiculo (marca,modelo,numeroPuertas,vendido,fechaEntrada) " + "VALUES (?,?,?,?,?)";
 
         PreparedStatement ps = conexion.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        ps.setString(1, marca);
-        ps.setString(2, modelo);
-        ps.setInt(3, numeroPuertas);
-        ps.setBoolean(4, vendido);
-        ps.setString(5, fechaEntrada);
+        ps.setString(1, vehiculo.getMarca());
+        ps.setString(2, vehiculo.getModelo());
+        ps.setInt(3, vehiculo.getNumeroPuertas());
+        ps.setBoolean(4, vehiculo.isVendido());
+        ps.setString(5, vehiculo.getFechaEntrada());
         ps.executeUpdate();
 
         super.cerrarBasesDatos();
